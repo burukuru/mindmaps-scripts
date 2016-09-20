@@ -20,7 +20,7 @@ while $RUNNING;
 do
 	while $WAITING;
 	do
-		sleep 1
+		sleep 10
 	done
 	(tail -f mindmaps.log & ) | grep -q -e "Ontology loaded" -e "All tasks done"
 	#pkill -P $$ tail
