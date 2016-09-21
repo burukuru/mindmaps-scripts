@@ -10,8 +10,11 @@ If you download this on a Mac, you can double click it wherever it is and it wil
 * Load the small Movie dataset into the graph using other scripts in this repository
 
 To make the scripts work, you will need to install and setup
+
 1. Java 8 and the JAVA_HOME variable
+
 2. Maven
+
 3. git
 
 ## Disclaimer
