@@ -61,5 +61,6 @@ rm /tmp/data_loader.pid
 kill -SIGUSR1 $LOGGERPID
 kill -SIGUSR2 $LOGGERPID
 echo "Everything loaded! You can start Graql now!"
+exit 0
 #Ontology loaded
 #All tasks done!

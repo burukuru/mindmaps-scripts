@@ -31,8 +31,6 @@ cd sample-datasets/movies/small-dataset
 cd ../../../mindmapsdb/logs
 sleep 10
 ./data_logger.sh
-kill `cat /tmp/data_logger.pid`
-rm /tmp/data_logger.pid
 cd ../../
 rm -rf mindmaps-scripts/
 ./mindmapsdb/bin/mindmaps.sh stop
