@@ -1,8 +1,7 @@
 TMP=`echo $PWD`
 SCHEMA=\'\{\"path\":\"$TMP/schema.gql\"\}\'
-ENTS=\'\{\"path\":\"$TMP/1-entities.gql\"\}\'
-ASSRTS_3=\'\{\"path\":\"$TMP/2-ternary-relations.gql\"\}\'
-ASSRTS_2=\'\{\"path\":\"$TMP/3-binary-relations.gql\"\}\'
+DATA=\'\{\"path\":\"$TMP/movie-data.gql\"\}\'
+
 WAITING=true
 
 echo $$ > /tmp/data_loader.pid
@@ -27,29 +26,15 @@ do
 done
 echo "Ontology loaded"
 WAITING=true
-echo "Loading entities"
-eval curl -H \"Content-Type: application/json\" -X POST -d `echo $ENTS` http://localhost:4567/import/batch/data
+echo "Loading data"
+eval curl -H \"Content-Type: application/json\" -X POST -d `echo $DATA` http://localhost:4567/import/batch/data
 sleep 3
 kill -SIGUSR2 $LOGGERPID
 while $WAITING;
 do
 	sleep 1
 done
-echo "Entities loaded"
-WAITING=true
-echo "Loading ternary relations"
-eval curl -H \"Content-Type: application/json\" -X POST -d `echo $ASSRTS_3` http://localhost:4567/import/batch/data
-sleep 3
-kill -SIGUSR2 $LOGGERPID
-while $WAITING;
-do
-	sleep 1
-done
-echo "Ternary relations loaded"
-WAITING=true
-echo "Loading binary relations"
-eval curl -H \"Content-Type: application/json\" -X POST -d `echo $ASSRTS_2` http://localhost:4567/import/batch/data
-sleep 3
+
 kill -SIGUSR2 $LOGGERPID
 
 while $WAITING;
