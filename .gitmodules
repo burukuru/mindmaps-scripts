@@ -1,0 +1,3 @@
+[submodule "sample-datasets"]
+	path = sample-datasets
+	url = https://github.com/mindmapsdb/sample-datasets.git
