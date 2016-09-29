@@ -12,7 +12,7 @@ elif [[ $1 == data ]]; then
   LOAD_COMPONENT=data
 fi
 
-git submodule update --init
+git -C ${PROGDIR} submodule update --init
 
 SCHEMA_DIR="$PROGDIR/sample-datasets/movies/"
 DATA_GQL_DIR="$PROGDIR/sample-datasets/movies/small-dataset/"
