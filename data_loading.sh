@@ -1,4 +1,7 @@
 #!/bin/bash
+
+set -e
+
 readonly PROGNAME=$(basename $0)
 readonly PROGDIR=$(readlink -m $(dirname $0))
 
@@ -16,11 +19,11 @@ DATA_GQL_DIR="$PROGDIR/sample-datasets/movies/small-dataset/"
 SLAVE_NODES=$(cat $PROGDIR/engine_slave_dev_mindmaps.txt)
 
 SCHEMA="{\"path\":\"$SCHEMA_DIR/schema.gql\"}"
-GQL_DATA="{\"path\":\"$DATA_GQL_DIR/large-dataset-data.gql\",\"hosts\":[${SLAVE_NODES}]}"
+GQL_DATA="{\"path\":\"$DATA_GQL_DIR/movie-data.gql\",\"hosts\":[${SLAVE_NODES}]}"
 WAITING=true
 LOADING=true
 
-MINDMAPS_LOG=$(lsof -p $(cat /tmp/mindmaps-engine.pid) | grep mindmaps.log | awk '{print $9}')
+MINDMAPS_LOG=$(lsof -p $(pgrep -f MindmapsEngineServer) | grep mindmaps.log | awk '{print $9}')
 
 echo $$ > /tmp/data_loader.pid
 sleep 1
